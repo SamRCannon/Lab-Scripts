@@ -1,3 +1,19 @@
+import sys
+import subprocess
+def installx(package):
+    try:
+        __import__(package)
+    except ImportError:
+        print(f"{package} not found. Installing...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    finally:
+        globals()[package] = __import__(package)
+installx('pandas')
+installx('seaborn')
+installx('glob')
+installx('openpyxl')
+installx('matplotlib')
+
 import pandas as pd
 import seaborn as sb
 import glob
@@ -24,3 +40,4 @@ for file in file_list:
 			data=df) 
     Plot.set_xlabel('')
 plt.show()
+
