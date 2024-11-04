@@ -5,14 +5,9 @@ Note: Each script is made to be operated by people with minimal experience in Py
 
 # Violin Plot will take data stored in an Excel file in the same folder as the script. As long as the data is structured as follows:
 
-  A           B
-  Groups      Variable_Measurements
-  Group A     1
-  Group A     1.1
-  Group A     1.5
-  Group B     6.1
-  Group B     6.8
-  Group B     6.2
+An Excel file needs to be generated with column A starting with a label followed by group ID for sample 1. Column B starts with a label and is then followed by the first value for sample 1. Continue this process with every replicate before saving. (see the example file for additional guidance)
+
+Double-click the script while it's in the same folder as the Excel file and it will take about 5 seconds to generate.
 
 This will create a violin plot which can then be stored.
 This graphing method does not exist in Excel so this was made as an easy alternative for a quick graphing solution.
