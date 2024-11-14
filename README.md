@@ -1,9 +1,9 @@
-### Lab-Scripts
+# Lab-Scripts
 While working in biology several statistical and procedural processes are complicated with finding resources. This repository is meant to store and share easy-to-use tools for biologists.
 
 Note: Each script is made to be operated by people with minimal experience in Python so redundant imports like sys are rerun every time to ensure any first-time user does not have to troubleshoot errors. To make this easier the function installx() is a header for all scripts to automatically handle installations and imports.
 
-### Violin Plot will take data stored in an Excel file in the same folder as the script. As long as the data is structured as follows:
+# Violin Plot will take data stored in an Excel file in the same folder as the script. As long as the data is structured as follows:
 
 An Excel file needs to be generated with column A starting with a label followed by group ID for sample 1. Column B starts with a label and is then followed by the first value for sample 1. Continue this process with every replicate before saving. (see the example file for additional guidance)
 
@@ -14,7 +14,7 @@ This graphing method does not exist in Excel so this was made as an easy alterna
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Stats Test
+# Stats Test
 
 This test is done to evaluate the variance of the two groups and compare. This works as a hypothesis test and when the variance does no prove to be significantly different you'll receive a p-value of 0.05 < and when the variance is significantly different you'll see that p-value = < 0.05. This is valuable as different t-tests have different assumptions and one of them is the equivalence of variance (homoscedasticity). Equal variance parametric t-tests are known as Student's t-tests and parametric unequal variance (heteroscedastic) t-tests are known as Welch's t-tests.
 
@@ -52,14 +52,14 @@ This test will evaluate treatment group means and compare them against a control
 
 Anita Nanda, Dr. Bibhuti Bhusan Mohapatra, Abikesh Prasada Kumar Mahapatra, Abiresh Prasad Kumar Mahapatra, Abinash Prasad Kumar Mahapatra. Multiple comparison test by Tukey’s honestly significant difference (HSD): Do the confident level control type I error. Int J Stat Appl Math 2021;6(1):59-65. DOI: 10.22271/maths.2021.v6.i1a.636
 
-# Stats Test Output
+### Stats Test Output
 
 There will be three files saved in the directory where the file is executed.
   1. Levene_and_t_test_Results_{Current date}
   2. Dunnett_Test_Results_{Current date}
   3. Tukey_HSD_Results_{Current date}
 
-# Interpretting output:
+### Interpretting output:
 
 The Levene and t-test file will give a recommendation for t-test to used based on two seperate factors. The first is on the basis of the Levene's test p-value. If the p-value is less than 0.05 then a Welch's t-test is recommended since the groups are determined to be heteroscedastic. In cases where the Levene p-value exceeds 0.05 a Student's t-test is recommended. The second factor is based on difference is sample sizes. The reason sample size matters is that it can very easily mask unequal variance especially in small sample sizes. If the difference in sample size is observed to be greater than 40% then a recommendation to use a welch's is presented in the file.
 
@@ -69,5 +69,5 @@ Both the Dunnett and Tukey tests are stored independently. With the Dunnett prov
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Automated Phase Response Curve Processing for Mammalian and N. Crassa Data
+# Automated Phase Response Curve Processing for Mammalian and N. Crassa Data
 
