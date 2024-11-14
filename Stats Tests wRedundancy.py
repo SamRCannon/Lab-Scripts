@@ -12,13 +12,14 @@ installx('scipy')
 installx('numpy')
 installx('time')
 installx('pandas')
+installx('scikit_posthocs')
 from datetime import datetime
 import numpy as np
 import pandas as pd
 from scipy import stats
 from statsmodels import api as sm
 from scipy.stats import ttest_ind, f_oneway
-from statsmodels.stats.multicomp import MultiComparison
+import scikit_posthocs as sp
 from statsmodels.stats.multicomp import pairwise_tukeyhsd 
 from statsmodels.stats.multitest import multipletests
 
@@ -140,20 +141,19 @@ for group_name, group_data in all_group_data.items():
     group_labels.extend([group_name] * len(group_data))
     data_values.extend(group_data)
 
-# Prepare the data for MultiComparison
-mc = MultiComparison(data_values, group_labels)
+# Convert to DataFrame for compatibility with Dunnett's test
+data_df = pd.DataFrame({'Group': group_labels, 'Value': data_values})
 
-# Perform Dunnett's test (comparing each group to the control group)
-dunnett_result = mc.tukeyhsd(alpha=0.05)
+# Perform Dunnett's test
+# Assuming 'Control' is the label for the control group in your data
+dunnett_result = sp.posthoc_dunnett(data_df, val_col='Value', group_col='Group', control=control_name)
 
-# Save Dunnett's results to a DataFrame
-dunnett_result_df = pd.DataFrame(
-    data=dunnett_result.summary().data[1:],  # Skip header row
-    columns=dunnett_result.summary().data[0]  # Use header row for column names
-)
+p_values_df = dunnett_result.iloc[1:, [0]].T  
+p_values_df.columns = dunnett_result.columns[1:] 
+p_values_df.index = ["Control Comparison p-value"] 
 
 # Save the results to Excel
 dunnett_file_name = f"Dunnett_Test_Results_{current_date}.xlsx"
-dunnett_result_df.to_excel(dunnett_file_name, index=False)
+p_values_df.to_excel(dunnett_file_name, index=True)
 
 print(f"Dunnett test results saved to {dunnett_file_name}.")
