@@ -3,6 +3,8 @@ While working in biology several statistical and procedural processes are compli
 
 Note: Each script is made to be operated by people with minimal experience in Python so redundant imports like sys are rerun every time to ensure any first-time user does not have to troubleshoot errors. To make this easier the function installx() is a header for all scripts to automatically handle installations and imports.
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Violin Plot will take data stored in an Excel file in the same folder as the script. As long as the data is structured as follows:
 
 An Excel file needs to be generated with column A starting with a label followed by group ID for sample 1. Column B starts with a label and is then followed by the first value for sample 1. Continue this process with every replicate before saving. (see the example file for additional guidance)
