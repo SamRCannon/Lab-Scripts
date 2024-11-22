@@ -47,10 +47,10 @@ Additional Tests Performed
 Bonferroni Adjustment/Correction: A Bonferroni Correction is a method used that attempts to correct type 1 errors. It's best used for multiple hypothesis testing but can be used at any time. It works by multiplying the p-value by the number of tests performed. The adjusted p-value will be larger than the p-value produced by a simple t-test and thus requires stronger data to meet the level of significance.
 
 Tukey Test:
-A Tukey test is like a more comprehensive ANOVA. They rely on the same assumptions however a Tukey test will compare all possible pairs of groups provided. This means you'll be able to see if treatment groups vary significantly from each other as well as how all treatments compare to control.
+A Tukey test is like a more comprehensive ANOVA. They rely on the same assumptions however a Tukey test will compare all possible pairs of groups provided. This means you'll be able to see if treatment groups vary significantly from each other as well as how all treatments compare to control. This test also takes the Family-Wise Error Rate (FWER) into account, which is the increased chance of producing a false positive by increasing the number of hypotheses. A pairwise test is susceptible to this because in a comparison of 6 different groups (15 pairwise comparisons[5+4+3+2+1]) then a 95% CI will allow a false positive to be produced 1-(0.95)^15 = 0.53 = 53% of the time. That means that of significant results over half would be falsely identified.
 
 Dunnett's Test:
-This test will evaluate treatment group means and compare them against a control mean to validate significance. Both Dunnett's and a Tukey HSD test are done after an ANOVA. This is done as an ANOVA provides an answer on whether the mean difference between groups is significant however these tests are far more illustrative on where the significant differences lie.
+This test will evaluate treatment group means and compare them against a control means to validate significance. Both Dunnett's and a Tukey HSD test are done after an ANOVA. This is done as an ANOVA provides an answer on whether the mean difference between groups is significant however these tests are far more illustrative of where the significant differences lie.
 
 Anita Nanda, Dr. Bibhuti Bhusan Mohapatra, Abikesh Prasada Kumar Mahapatra, Abiresh Prasad Kumar Mahapatra, Abinash Prasad Kumar Mahapatra. Multiple comparison test by Tukey’s honestly significant difference (HSD): Do the confident level control type I error. Int J Stat Appl Math 2021;6(1):59-65. DOI: 10.22271/maths.2021.v6.i1a.636
 
@@ -61,13 +61,17 @@ There will be three files saved in the directory where the file is executed.
   2. Dunnett_Test_Results_{Current date}
   3. Tukey_HSD_Results_{Current date}
 
-### Interpretting output:
+### Interpreting output:
 
-The Levene and t-test file will give a recommendation for t-test to used based on two seperate factors. The first is on the basis of the Levene's test p-value. If the p-value is less than 0.05 then a Welch's t-test is recommended since the groups are determined to be heteroscedastic. In cases where the Levene p-value exceeds 0.05 a Student's t-test is recommended. The second factor is based on difference is sample sizes. The reason sample size matters is that it can very easily mask unequal variance especially in small sample sizes. If the difference in sample size is observed to be greater than 40% then a recommendation to use a welch's is presented in the file.
+The Levene and t-test file will give a recommendation for the t-test to be used based on two separate factors. The first is based on Levene's test p-value. If the p-value is less than 0.05 then a Welch's t-test is recommended since the groups are determined to be heteroscedastic. In cases where the Levene p-value exceeds 0.05 a Student's t-test is recommended. The second factor is based on the difference in sample sizes. Sample size matters because it can easily mask unequal variance, especially in small sample sizes. If the difference in sample size is observed to be greater than 40% then a recommendation to use a welch's is presented in the file.
 
-Regardless of recommendation both t-tests and their respective Bonferroni adjustments are provided for you to use at your discression. 
+Regardless of recommendation both t-tests and their respective Bonferroni adjustments are provided for you to use at your discretion. 
 
-Both the Dunnett and Tukey tests are stored independently. With the Dunnett providing only p-values and the Tukey test giving far more with the "Reject" referring to whether the hypothesis of no significance is accepted or rejected. 
+Both the Dunnett and Tukey tests are stored independently. The Dunnett provides only p-values and the Tukey test gives far more with the "Reject" referring to whether the hypothesis of no significance is accepted or rejected. 
+
+### Recommendations/ Future Directions:
+
+After more reading, there is an even more conservative model of pairwise post hoc comparison. The Holm-Bonferroni method is another test performed after an ANOVA and fulfills the same purpose of correcting type I errors except to a greater extent than a Tukey test. This method also appears to apply more uniform corrections than a Bonferroni t-test correction. I plan to keep the Bonferroni t-test adjustment up to user discretion but I believe it would be beneficial to have the option of either a Tukey or a Holms-Bonferroni method analysis of pairwise significance. 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
